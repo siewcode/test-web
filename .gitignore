@@ -1,3 +1,15 @@
+# IDE
+Icon\r\r
+.DS_Store
+.vscode/
+
+# Designated local
+__local__/
+
+# Python
+__pycache__/
+build/
+
 # Logs
 logs
 *.log
