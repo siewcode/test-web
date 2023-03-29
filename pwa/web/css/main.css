@@ -3,9 +3,13 @@ body {
 }
 
 /* App Layout */
-
 .holy-grail-flexbox {
   height: 100vh;
+  /* 
+    Fix Safari 100vh height overflow problem
+    Maybe better to use JS innerheight for better solution
+  */
+  height: -webkit-fill-available;
   width: 100vw;
   box-sizing: border-box;
 
@@ -23,7 +27,7 @@ body {
     leaving the footer hanging high up  */
   flex-grow: 1;
   /* Required to prevent growing beyong 100vh */
-  overflow: scroll;
+  overflow-y: scroll;
   /* Put padding around content */
   padding: 0.5rem
 }
