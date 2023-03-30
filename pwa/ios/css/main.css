@@ -1,8 +1,17 @@
 body {
+  /* Remove default 8px margin */
   margin: 0;
+  
+  /* 
+    Prevent font scaling in landscape while allowing user zoom.
+    Otherwise, font will abruptly increase size in landscape on iOS.
+  */
+  -webkit-text-size-adjust: 100%; 
 }
 
+
 /* App Layout */
+
 .holy-grail-flexbox {
   height: 100vh;
   /* 
@@ -10,6 +19,7 @@ body {
     Maybe better to use JS innerheight for better solution
   */
   height: -webkit-fill-available;
+
   width: 100vw;
   box-sizing: border-box;
 
@@ -34,8 +44,12 @@ body {
 
 .holy-grail-flexbox footer {
   background-color: gold;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  padding-bottom: 1rem;
 }
+
+
+/* Shadow */
 
 .shadow {
   box-shadow: 
@@ -53,4 +67,13 @@ body {
   box-shadow: 
   0 10px 15px -3px rgb(0 0 0 / 0.1), 
   0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+
+/* iOS related */
+@media (display-mode: standalone) {  
+  /*  Add 32px to create space for iOS app switcher  */
+  .holy-grail-flexbox footer {
+    padding-bottom: calc(1rem + 32px);
+  }
 }
