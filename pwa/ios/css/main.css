@@ -1,7 +1,6 @@
 body {
   /* Remove default 8px margin */
   margin: 0;
-  
   /* 
     Prevent font scaling in landscape while allowing user zoom.
     Otherwise, font will abruptly increase size in landscape on iOS.
@@ -12,40 +11,45 @@ body {
 
 /* App Layout */
 
-.holy-grail-flexbox {
+.app {
   height: 100vh;
   /* 
     Fix Safari 100vh height overflow problem
     Maybe better to use JS innerheight for better solution
   */
   height: -webkit-fill-available;
-
   width: 100vw;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
 }
 
-.holy-grail-flexbox header {
+.app header {
   background-color: gold;
-  padding: 0.5rem;
+  /*  
+    Better to user padding than set height as this somehow get distorted 
+    on web page. Looks okay on phone but not on desktop.
+    Top header and footer padding of 0.75rem, plus additional 2.5rem padding 
+    bottom on standalone replicate iOS mail app layout.
+  */  
+  padding: 0.75rem;
 }
 
-.holy-grail-flexbox main {
-  /* This must be here or middle area won't expand to take up space, 
-    leaving the footer hanging high up  */
+.app main {
+  /* 
+    This must be here or middle area won't expand to take up space, 
+    leaving the footer hanging high up
+  */
   flex-grow: 1;
   /* Required to prevent growing beyong 100vh */
   overflow-y: scroll;
-  /* Put padding around content */
-  padding: 0.5rem
+  /* Put padding around content. iOS default is 16px */
+  padding: 1rem;
 }
 
-.holy-grail-flexbox footer {
+.app footer {
   background-color: gold;
   padding: 0.75rem;
-  padding-bottom: 1rem;
 }
 
 
@@ -72,8 +76,8 @@ body {
 
 /* iOS related */
 @media (display-mode: standalone) {  
-  /*  Add 32px to create space for iOS app switcher  */
-  .holy-grail-flexbox footer {
-    padding-bottom: calc(1rem + 32px);
+  /* Create space for iOS app switcher  */
+  .app footer {
+    padding-bottom: calc(0.75rem + 2.5rem);
   }
 }
