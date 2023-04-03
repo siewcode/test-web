@@ -1,0 +1,96 @@
+:root {
+  --ios-blue: rgb(0,122,255);
+  --ios-yellow: rgb(255, 204, 0);
+  --ios-gray-1: rgb(142, 142, 147);
+  --ios-gray-2: rgb(174, 174, 178);
+  --ios-gray-3: rgb(199, 199, 204);
+  --ios-gray-6: rgb(242, 242, 247);
+}
+
+body {
+  /* Remove default 8px margin */
+  margin: 0;
+  box-sizing: border-box;
+  /* 
+    Prevent font scaling in landscape while allowing user zoom.
+    Otherwise, font will abruptly increase size in landscape on iOS.
+  */
+  -webkit-text-size-adjust: 100%; 
+}
+
+
+/* 
+  App Layout 
+*/
+
+.app {
+  height: 100vh;
+  /* Fix Safari 100vh height overflow problem */
+  height: -webkit-fill-available;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.app header {
+  background-color: white;
+  /*  
+    Better to user padding than set height as this somehow get distorted 
+    on web page. Looks okay on phone but not on desktop.
+    Top header and footer padding of 0.75rem, plus additional 2.25rem padding 
+    bottom on standalone replicate iOS mail app layout.
+  */
+  padding: 0.75rem;
+}
+
+.app main {
+  /* 
+    This must be here or middle area won't expand to take up space, 
+    leaving the footer hanging high up 
+  */
+  flex-grow: 1;
+  /* Required to prevent growing beyong 100vh */
+  overflow-y: scroll;
+  /* Put padding around content. iOS default is 16px */
+  padding: 1rem;
+}
+
+.app footer {
+  background-color: white;
+  /*  No padding so bottom nav bar can fill all space. */
+  border-top: 0.75px solid var(--ios-gray-3);
+}
+
+
+/* 
+  Utilities 
+*/
+.shadow {
+  box-shadow: 
+    0 1px 3px 0 rgb(0 0 0 / 0.1), 
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.shadow-md {
+  box-shadow: 
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 
+  0 10px 15px -3px rgb(0 0 0 / 0.1), 
+  0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+
+/* 
+  iOS related 
+*/
+
+@media (display-mode: standalone) {  
+  /* Create space for iOS app switcher */
+  .app footer {
+    padding-bottom: 2.25rem;
+  }
+}
