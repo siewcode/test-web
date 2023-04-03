@@ -1,6 +1,16 @@
+:root {
+  --ios-blue: rgb(0,122,255);
+  --ios-yellow: rgb(255, 204, 0);
+  --ios-gray-1: rgb(142, 142, 147);
+  --ios-gray-2: rgb(174, 174, 178);
+  --ios-gray-3: rgb(199, 199, 204);
+  --ios-gray-6: rgb(242, 242, 247);
+}
+
 body {
   /* Remove default 8px margin */
   margin: 0;
+  box-sizing: border-box;
   /* 
     Prevent font scaling in landscape while allowing user zoom.
     Otherwise, font will abruptly increase size in landscape on iOS.
@@ -9,36 +19,34 @@ body {
 }
 
 
-/* App Layout */
+/* 
+  App Layout 
+*/
 
 .app {
   height: 100vh;
-  /* 
-    Fix Safari 100vh height overflow problem
-    Maybe better to use JS innerheight for better solution
-  */
+  /* Fix Safari 100vh height overflow problem */
   height: -webkit-fill-available;
   width: 100vw;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
 .app header {
-  background-color: gold;
+  background-color: white;
   /*  
     Better to user padding than set height as this somehow get distorted 
     on web page. Looks okay on phone but not on desktop.
-    Top header and footer padding of 0.75rem, plus additional 2.5rem padding 
+    Top header and footer padding of 0.75rem, plus additional 2.25rem padding 
     bottom on standalone replicate iOS mail app layout.
-  */  
+  */
   padding: 0.75rem;
 }
 
 .app main {
   /* 
     This must be here or middle area won't expand to take up space, 
-    leaving the footer hanging high up
+    leaving the footer hanging high up 
   */
   flex-grow: 1;
   /* Required to prevent growing beyong 100vh */
@@ -48,13 +56,15 @@ body {
 }
 
 .app footer {
-  background-color: gold;
-  padding: 0.75rem;
+  background-color: white;
+  /*  No padding so bottom nav bar can fill all space. */
+  border-top: 0.75px solid var(--ios-gray-3);
 }
 
 
-/* Shadow */
-
+/* 
+  Utilities 
+*/
 .shadow {
   box-shadow: 
     0 1px 3px 0 rgb(0 0 0 / 0.1), 
@@ -74,10 +84,13 @@ body {
 }
 
 
-/* iOS related */
+/* 
+  iOS related 
+*/
+
 @media (display-mode: standalone) {  
-  /* Create space for iOS app switcher  */
+  /* Create space for iOS app switcher */
   .app footer {
-    padding-bottom: calc(0.75rem + 2.5rem);
+    padding-bottom: 2.25rem;
   }
 }
