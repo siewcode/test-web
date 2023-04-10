@@ -1,9 +1,9 @@
 {
-  "name": "PWA iOS", 
-  "short_name": "PWA iOS", 
+  "name": "Test PWA iOS", 
+  "short_name": "Test PWA iOS", 
   "start_url": "./index.html", 
   "display": "standalone", 
-  "theme_color": "white",
+  "theme_color": "#007aff",
   "icons": [ 
     { 
       "src": "./assets/AppIcon-ios-marketing.png", 
