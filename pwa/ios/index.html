@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!--  Prevent user resizing -->
+    <!-- Add viewport-fit=cover to remove safe area sidebars on iOS landscape. -->
+    <!-- Prevent user resizing -->
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
 
     <!-- Stylesheet -->
@@ -25,16 +26,17 @@
     <div class="app">
 
       <!-- App Header -->
-      <header class="shadow-md top-nav-bar">
-        <!--  Back button  -->
-        <nav class="back-btn">
-          <svg height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M0 0h24v24H0z" fill="none"/><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
-          </svg>
-          <span>Back</span>
-        </nav>
-        <!-- App title / nav indicator -->
-        <span class="top-nav-bar-title">Title</span>
+      <header class="shadow-md">
+        <div class="top-nav-bar">
+          <nav class="back-btn">
+            <svg height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
+            </svg>
+            <span>Back</span>
+          </nav>
+          <span class="top-nav-bar-title">Title</span>
+        </div>
       </header>
       <!-- end App header -->
 
@@ -176,6 +178,7 @@
         </nav>
       </footer>
       <!-- end Bottom Nav Bar -->
+
     </div>
     <!-- end Main App   -->
   </body>

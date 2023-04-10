@@ -34,13 +34,6 @@ body {
 
 .app header {
   background-color: white;
-  /*  
-    Better to user padding than set height as this somehow get distorted 
-    on web page. Looks okay on phone but not on desktop.
-    Top header and footer padding of 0.75rem, plus additional 2.25rem padding 
-    bottom on standalone replicate iOS mail app layout.
-  */
-  padding: 0.75rem;
 }
 
 .app main {
@@ -53,6 +46,7 @@ body {
   overflow-y: scroll;
   /* Put padding around content. iOS default is 16px */
   padding: 1rem;
+  max-width: 60rem;
 }
 
 .app footer {
@@ -65,6 +59,7 @@ body {
 /* 
   Utilities 
 */
+
 .shadow {
   box-shadow: 
     0 1px 3px 0 rgb(0 0 0 / 0.1), 
@@ -87,6 +82,17 @@ body {
 /* 
   iOS related 
 */
+
+@media (orientation: landscape) {
+  /*  Prevent content from going all the way to edge  */
+  .app header {
+    padding: 0 2rem;
+  }
+  
+  .app main{
+    padding: 1rem 3rem;  
+  }
+}
 
 @media (display-mode: standalone) {  
   /* Create space for iOS app switcher */
