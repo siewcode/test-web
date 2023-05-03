@@ -185,6 +185,14 @@ a.nav-icon:visited {
   iOS related 
 */
 
+@media (display-mode: standalone) {  
+  /* Create space for iOS app switcher */
+  .app footer {
+    padding-bottom: 2.25rem;
+  }
+}
+
+/* Put this later so landscape css has precedence */
 @media (orientation: landscape) {
   /* Prevent content from going all the way to edge */
   .app > header {
@@ -198,12 +206,5 @@ a.nav-icon:visited {
   /* Create space for iOS app switcher */
   .app > footer {
     padding-bottom: 1.5rem;
-  }
-}
-
-@media (orientation: landscape) and (display-mode: standalone) {  
-  /* Create space for iOS app switcher */
-  .app footer {
-    padding-bottom: 2.25rem;
   }
 }
