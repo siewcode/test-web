@@ -1,0 +1,14 @@
+{
+  "name": "PWA App Shell", 
+  "short_name": "PWA App Shell", 
+  "start_url": "./index.html", 
+  "theme_color": "white",
+  "display": "standalone",
+  "icons": [ 
+    { 
+      "src": "./assets/AppIcon.png", 
+      "sizes": "1024x1024", 
+      "type": "image/png"}
+  ],
+  "description": "Demonstrate PWA with header and footer usable across all browsers"
+}

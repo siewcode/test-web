@@ -1,0 +1,63 @@
+/*
+  Preflight
+*/
+
+:root {
+  /* Safari fixes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Fix abrupt increase in font size in iOS landscape */
+  -webkit-text-size-adjust: 100%;
+  /* Remove Safari gray bg when clicking link  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 
+  Remove Default Styling 
+*/
+
+body {
+  /* Remove default 8px margin */
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+/* Make elements block instead of inline */
+audio,
+canvas,
+embed,
+iframe,
+img,
+object, 
+svg,
+video {
+  display: block;
+  /* vertical-align: middle; */
+}
+
+/* 
+  Constrain to parent width and preserve aspect ratio. Prevents overflowing
+  containers and make them responsive by default
+*/
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}

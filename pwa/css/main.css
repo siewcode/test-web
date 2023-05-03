@@ -1,83 +1,79 @@
+/* 
+  Styling specific to App
+*/
+
 :root {
+  /* iOS colors */
   --ios-blue: rgb(0,122,255);
   --ios-yellow: rgb(255, 204, 0);
   --ios-gray-1: rgb(142, 142, 147);
   --ios-gray-2: rgb(174, 174, 178);
   --ios-gray-3: rgb(199, 199, 204);
   --ios-gray-6: rgb(242, 242, 247);
-}
 
-body {
-  /* Remove default 8px margin */
-  margin: 0;
-  box-sizing: border-box;
-  /* 
-    Prevent font scaling in landscape while allowing user zoom.
-    Otherwise, font will abruptly increase size in landscape on iOS.
-  */
-  -webkit-text-size-adjust: 100%; 
+  /* App theme */
 }
-
 
 /* 
   App Layout 
 */
 
 .app {
-  height: 100vh;
-  /* Fix Safari 100vh height overflow problem */
-  height: -webkit-fill-available;
+  /*  This var is set by JS on resize event  */
+  height: var(--viewport-height);
+  /* 
+    Fix Safari 100vh height overflow problem 
+    This is required to fix app height in standalone
+    Do this in the app only once here. Result in > 100vh for chrome though
+    NOTE: use JS to set instead
+  */
+/*   height: -webkit-fill-available; */
   width: 100vw;
   display: flex;
   flex-direction: column;
 }
 
-.app header {
+.app > header {
   background-color: white;
 }
 
-.app main {
+.app > main {
   /* 
     This must be here or middle area won't expand to take up space, 
-    leaving the footer hanging high up 
+    leaving the footer hanging high up.
   */
   flex-grow: 1;
-  /* Required to prevent growing beyong 100vh */
-  overflow-y: scroll;
-  /* Put padding around content. iOS default is 16px */
-  padding: 1rem;
-  max-width: 60rem;
+  /* 
+    Required to prevent growing beyong 100vh
+    Set auto (not scroll) to show only when there is overflow
+  */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Don't set max width on main. Result in double cols */
+/*   max-width: 60rem; */
 }
 
-.app footer {
+.app > main.full-centered {
+  background-color: lightblue;
+  /* 
+    Percentage height can't be set here. Have to approx using vh
+    This means creating vertical center is difficult
+  */
+/*   height: 100%; */
+  /* This won't work */
+/*   height: -webkit-fill-available; */
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  text-align:center;
+}
+
+.app > footer {
   background-color: white;
   /*  No padding so bottom nav bar can fill all space. */
   border-top: 0.75px solid var(--ios-gray-3);
 }
-
-
-/* 
-  Utilities 
-*/
-
-.shadow {
-  box-shadow: 
-    0 1px 3px 0 rgb(0 0 0 / 0.1), 
-    0 1px 2px -1px rgb(0 0 0 / 0.1);
-}
-
-.shadow-md {
-  box-shadow: 
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-.shadow-lg {
-  box-shadow: 
-  0 10px 15px -3px rgb(0 0 0 / 0.1), 
-  0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
 
 /* 
   Nav Icons 
@@ -109,7 +105,6 @@ a.nav-icon:visited {
 }
 
 .nav-icon:hover {
-  /* 007aff is iOS blue */
   color: var(--ios-blue);
 }
 
@@ -173,23 +168,40 @@ a.nav-icon:visited {
   text-transform: capitalize;
 }
 
+/* 
+  Modal 
+*/
+
+.fullscreen-modal {
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100vw;
+  height: var(--viewport-height);
+  z-index: 5;
+}
 
 /* 
   iOS related 
 */
 
 @media (orientation: landscape) {
-  /*  Prevent content from going all the way to edge  */
-  .app header {
+  /* Prevent content from going all the way to edge */
+  .app > header {
     padding: 0 2rem;
   }
   
-  .app main{
-    padding: 1rem 3rem;  
+  .app > main{
+    padding: 0 3rem;  
+  }
+  
+  /* Create space for iOS app switcher */
+  .app > footer {
+    padding-bottom: 1.5rem;
   }
 }
 
-@media (display-mode: standalone) {  
+@media (orientation: landscape) and (display-mode: standalone) {  
   /* Create space for iOS app switcher */
   .app footer {
     padding-bottom: 2.25rem;
